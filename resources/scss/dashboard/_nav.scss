@@ -1,0 +1,13 @@
+.navigation-dashboard{
+    background-color: #ffffff;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    display: none;
+}
+
+@media(max-width:1024px){
+    .navigation-dashboard{
+        display: block;
+    }
+}

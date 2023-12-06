@@ -8,6 +8,7 @@ $dark: #343538;
 $dark-text:#8C8C8C;
 $light-orange: #FFE7C2;
 $light-orange-2: #FFF4E3;
+$primary-blue: #3A4B87;
 
 html{
     overflow-x: hidden;
@@ -15,7 +16,7 @@ html{
 }
 
 body{
-    font-family: $font;
+    font-family: $font, sans-serif;
     overflow-x: hidden;
 }
 
@@ -30,5 +31,9 @@ body{
 @import 'home/about';
 @import 'home/cta';
 @import 'home/contact';
+
+@import 'dashboard/aside';
+@import 'dashboard/nav';
+@import 'dashboard/index';
 
 @import 'footer'
