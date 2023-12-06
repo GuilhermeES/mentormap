@@ -1,0 +1,52 @@
+.cta{
+    background: linear-gradient(90deg, #080D1E -1.67%, #5946E3 129.08%);
+    position: relative;
+
+    &__decorative{
+        position: absolute;
+        right: 0;
+        top: 13%;
+        bottom: 0;
+
+        &--one{
+            left: 0;
+            position: absolute;
+            top: 13%;   
+        }
+    }
+
+    &__texts{
+        position: relative;
+        z-index: 10;
+    }
+
+    &__proposito{
+        position: absolute;
+        bottom: -59px;
+        margin-right: auto;
+        margin-left: auto;
+        left: 0;
+        right: 0;
+        text-align: center;
+    }
+
+}
+
+@media(max-width:996px) {
+    .cta{
+        background: linear-gradient(0deg, #080D1E 0%, #5946E3 140.69%);
+
+
+        &__texts{
+            padding-top: 80px
+        }
+
+        &__decorative{
+            top: unset;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            height: 360px;
+        }
+    }
+}
