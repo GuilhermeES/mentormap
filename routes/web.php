@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
-
+use App\Http\Controllers\SiteController;
+use App\Http\Controllers\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,35 +15,17 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('/', function () {
-    return view('home.index');
-});
+Route::get('/', function () { return view('index');});
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login-post', [LoginController::class, 'login'])->name('login.post');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::prefix('dashboard')->name('dashboard.')->group(function () {
-    // Rota para /dashboard
+Route::prefix('dashboard')->middleware(['auth'])->name('dashboard.')->group(function () {
+    //  /dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('index');
 
-    // Rota para /dashboard/gerenciar
-    Route::get('/gerenciar', [DashboardController::class, 'gerenciar'])->name('gerenciar');
+    // /dashboard/gerenciar
+    Route::get('/gerenciar', [DashboardController::class, 'gerenciar'])->middleware(['admin'])->name('gerenciar');
 });
 
-/*
-Route::middleware(['auth'])->group(function () {
-    // Rota para /dashboard
-    Route::get('/dashboard', 'DashboardController@index');
-
-    // Rota para /dashboard/gerenciar
-    Route::get('/dashboard/gerenciar', 'DashboardController@gerenciar')->middleware('admin');
-});
-
-// app/Http/Middleware/AdminMiddleware.php
-public function handle($request, Closure $next)
-{
-    if (auth()->check() && auth()->user()->isAdmin()) {
-        return $next($request);
-    }
-
-    abort(403, 'Acesso não autorizado');
-}
-
-*/
+Route::post('/site/{id?}', [SiteController::class, 'storeOrUpdate'])->name('site.storeOrUpdate');

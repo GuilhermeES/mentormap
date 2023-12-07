@@ -1,0 +1,67 @@
+.login{
+    position: relative;
+    padding-top: 68px;
+
+    &__bg{
+        position: absolute;
+        right: 0;
+    }
+
+    &__form{
+        position: absolute;
+        left: 30%;
+        right: 0;
+        width: 424px;
+        margin-left: auto;
+        margin-right: auto;
+
+        h1{
+            font-size: 32px;
+            font-weight: 500;
+            color: #000;
+        }
+
+        p{
+            color: #000;
+        }
+    }
+
+    &__submit{
+        background-color: $primary-blue-default;
+        color: #ffffff;
+        padding: 10px 50px 10px 50px;
+        font-weight: 700;
+        transition: 0.4s all;
+
+        &:hover{
+            background-color: #0c194b;
+            color: #ffffff;
+        }
+    }
+
+    &__no-acount{
+        color: #000;
+        font-weight: 400;
+
+        a{
+            color: $primary-blue;
+            text-decoration: none;
+        }
+    }
+}
+
+    
+@media(max-width:1024px) {
+    .login{
+        &__form{
+            position: relative;
+            width: 100%;
+            left: 0;
+            padding-left: 15px;
+            padding-right: 15px;
+
+            padding-top: 70px;
+            padding-bottom: 100px;
+        }
+    }
+}

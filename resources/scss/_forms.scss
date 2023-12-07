@@ -27,3 +27,15 @@ textarea{
         opacity: 0.9;
     }
 }
+
+.gerenciar{
+    &__textarea{
+        width: 100%;
+        border: 1px solid #C3C3C3;
+        border-radius: 4px;
+        background: #F9F9F9;
+        font-size: 18px;
+        padding-left: 18px;
+        height: 218px !important;
+    }
+}

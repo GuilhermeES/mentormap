@@ -9,6 +9,7 @@ $dark-text:#8C8C8C;
 $light-orange: #FFE7C2;
 $light-orange-2: #FFF4E3;
 $primary-blue: #3A4B87;
+$iris: #5D5FEF;
 
 html{
     overflow-x: hidden;
@@ -35,5 +36,7 @@ body{
 @import 'dashboard/aside';
 @import 'dashboard/nav';
 @import 'dashboard/index';
+@import 'dashboard/gerenciar';
 
-@import 'footer'
+@import 'login';
+@import 'footer';

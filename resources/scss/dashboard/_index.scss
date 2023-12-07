@@ -12,6 +12,17 @@
             object-fit: cover;
             position: relative;
         }
+
+        &--intern{
+            &-img{
+                height: 200px;
+            }
+            &-img-bg{
+                position: absolute;
+                right: 10%;
+                top: 0;
+            }
+        }
     }
 
     &__bg-text{
@@ -89,5 +100,14 @@
                 width: 92%;
             }
         }
+
+        &__top{
+            &--intern{
+                &-title-page{
+                    top: 50%;
+                }   
+            }
+        }   
+
     }
 }

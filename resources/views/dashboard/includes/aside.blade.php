@@ -9,23 +9,27 @@
                 <i class="fa-solid fa-house"></i>
                 Tela inicial
             </a>
-            <a href="{{ route('dashboard.gerenciar') }}" class="{{ (request()->segment(2) == 'gerenciar') ? 'active' : '' }}">
-                <i class="fa-solid fa-desktop"></i>
-                Gerenciar site
-            </a>
+            @if( auth()->user()->admin )
+                <a href="{{ route('dashboard.gerenciar') }}" class="{{ (request()->segment(2) == 'gerenciar') ? 'active' : '' }}">
+                    <i class="fa-solid fa-desktop"></i>
+                    Gerenciar site
+                </a>
+            @endif
         </nav>
     </div>
     <div class="aside__hr"><hr></div>
     <div class="aside__bot">
         <div class="aside__user">
-            Guilherme Souza
+            {{ auth()->user()->name }}
         </div>
-        <div class="aside__adm">
-            Admnistrador
-        </div>
-        <div class="aside__logout pt-2">
+        @if( auth()->user()->admin )
+            <div class="aside__adm">
+                Admnistrador
+            </div>
+        @endif
+        <a href="{{ route('logout') }}" class="aside__logout pt-2 d-block">
             <i class="fa-solid fa-right-from-bracket"></i>
             Sair
-        </div>
+        </a>
     </div>
 </aside>

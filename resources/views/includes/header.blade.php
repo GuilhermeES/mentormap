@@ -1,7 +1,7 @@
 <header class="header">
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/">
                 <img src="{{ asset('images/logo_header.png') }}" alt="Logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -32,10 +32,10 @@
                 </ul>
             </div>
             <div class="d-none d-lg-flex gap-4">
-                <a href="/login" class="btn header__btn header__btn--ghost">
+                <a href="" class="btn header__btn header__btn--ghost">
                     Login
                 </a>
-                <a href="/cadastro" class="btn header__btn header__btn--normal">
+                <a href="" class="btn header__btn header__btn--normal">
                     Cadastro
                 </a>
             </div>
