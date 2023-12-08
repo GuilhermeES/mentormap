@@ -10,11 +10,20 @@ class SiteController extends Controller
     public function storeOrUpdate(Request $request, $id = null) {
         $dados = request()->except(['_token']);
 
-        // Manipular a imagem
-        if ($request->hasFile('imagem')) {
-            $imagem = $request->file('imagem');
-            $caminhoImagem = $imagem->store('public/images'); // Salva na pasta storage/app/public/images
-            $dados['caminho_imagem'] = str_replace('public/', '', $caminhoImagem);
+        
+        // Verifica se há um arquivo de imagem na requisição
+        if (request()->hasFile('image')) {
+            // Obtém o arquivo de imagem
+            $imagem = request()->file('image');
+
+            // Define um nome único para a imagem usando o timestamp
+            $nomeImagem = time() . '_' . $imagem->getClientOriginalName();
+
+            // Move a imagem para o diretório public/images
+            $imagem->move(public_path('images'), $nomeImagem);
+
+            // Adiciona o nome da imagem aos dados que serão salvos no banco de dados
+            $dados['image'] = $nomeImagem;
         }
 
         // Verifica se o ID foi fornecido

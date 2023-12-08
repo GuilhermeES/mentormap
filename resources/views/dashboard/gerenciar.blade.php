@@ -20,43 +20,48 @@
                 <img src="{{ asset('images/dashboard/gerenciar_interna.png') }}" alt="" class="d-none d-xl-block content__top--intern content__top--intern-img-bg">
             </div>
         
-            <div class="content__body">
+            <div class="content__body mb-5 pb-4 gerenciar__top">
                 
-                <!--
+                @if(session('success'))
+                    <div class="alert alert-success ">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
                 @foreach ($registros as $item)
-                    {{ $item }}
-                @endforeach
-                
-                <form method="post" action="{{ route('site.storeOrUpdate', $registro->id ?? null) }}">     
-                    @csrf
-                    <div class="gerenciar-list">
-                        <div class="gerenciar p-4 mb-4">
-                            <div class="gerenciar__section">Seção 01</div>
-                            <div class="gerenciar__name">Banner</div>
-                            <div class="row pt-4">
-                                <div class="col-md-8">
-                                    <div class="gerenciar__text">
-                                        <input type="hidden" name="page" value="home">  
-                                        <input type="hidden" name="section" value="banner">  
-                                        <textarea class="gerenciar__textarea" name="text">  </textarea>
+                    <form method="post" action="{{ route('site.storeOrUpdate', $item->id ?? null) }}" enctype="multipart/form-data">     
+                        @csrf
+                        <div class="gerenciar-list">
+                            <div class="gerenciar p-4 mb-4">
+                                <div class="gerenciar__section">Seção {{ $item->id }}</div>
+                                <div class="gerenciar__name"> {{ $item->section }} </div>
+                                <div class="row pt-4 ">
+                                    <div class="col-md-7">
+                                        <div class="gerenciar__text">
+                                            <textarea class="gerenciar__textarea" name="text">{{ $item->text }}</textarea>
+                                            <img src="{{ asset('images/edit.svg') }}" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="gerenciar__img p-4">
+                                            <div class="gerenciar__input pb-4">
+                                                <label for="image">
+                                                    <input  class="gerenciar__input-file" type="file" id="image" name="image" accept="image/png, image/jpeg" />
+                                                </label>
+                                            </div>
+                                            @if($item->image)
+                                                <img src="{{ asset('images/' . $item->image) }}" alt="Imagem" class="imagem-preview">
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="gerenciar__img">
-                                        <input type="file" name="image" accept="image/png, image/jpeg" />
-                                    </div>
+                                <div class="text-center text-md-end pt-4">
+                                    <button type="submit" class="btn gerenciar__submit"> Salvar alterações </button>
                                 </div>
                             </div>
                         </div>
-                        
-                    </div>
-                    <div class="text-end">
-                        <button type="submit" class="btn gerenciar__submit"> Adicionar campo </button>
-                    </div>
-                </form>
-
-                <hr class="mt-5">
-                -->
+                    </form>
+                @endforeach
             </div>
         </div>
     </div>
