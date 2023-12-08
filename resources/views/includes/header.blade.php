@@ -13,16 +13,16 @@
             <div class="collapse navbar-collapse justify-content-end me-5 pe-3" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item header__item">
-                        <a class="nav-link header__link" href="#banner">Início</a>
+                        <a class="nav-link header__link" href="{{ Route::currentRouteName() === 'home' ? '#banner' : route('home') . '#banner' }}">Início</a>
                     </li>
                     <li class="nav-item header__item">
-                        <a class="nav-link header__link" href="#plataforma">Nossa plataforma</a>
+                        <a class="nav-link header__link" href="{{ Route::currentRouteName() === 'home' ? '#plataforma' : route('home') . '#plataforma' }}">Nossa plataforma</a>
                     </li>
                     <li class="nav-item header__item">
-                        <a class="nav-link header__link" href="#contato">Contato</a>
+                        <a class="nav-link header__link" href="{{ Route::currentRouteName() === 'home' ? '#contato' : route('home') . '#contato' }}">Contato</a>
                     </li>
                     <div class="d-block d-lg-none gap-4">
-                        <a href="/login" class="btn header__btn header__btn--ghost me-3">
+                        <a href="{{route('login')}}" class="btn header__btn header__btn--ghost me-3">
                             Login
                         </a>
                         <a href="/cadastro" class="btn header__btn header__btn--normal">
@@ -32,11 +32,11 @@
                 </ul>
             </div>
             <div class="d-none d-lg-flex gap-4">
-                <a href="" class="btn header__btn header__btn--ghost">
+                <a href="{{route('login')}}" class="btn header__btn header__btn--ghost">
                     Login
                 </a>
-                <a href="" class="btn header__btn header__btn--normal">
-                    Cadastro
+                <a href="#" class="btn header__btn header__btn--normal">
+                    Em breve
                 </a>
             </div>
         </div>

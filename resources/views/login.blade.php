@@ -35,9 +35,11 @@
                 </div>
                 <button type="submit" class="btn login__submit mt-2"> Entrar </button>
             </form>
+            <!--
             <div class="pt-3 login__no-acount">
                 Não possui uma conta ? <a href="">Crie uma conta</a>
             </div>
+            -->
         </div>
     </section>
 

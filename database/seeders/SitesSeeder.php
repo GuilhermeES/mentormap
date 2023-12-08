@@ -17,7 +17,8 @@ class SitesSeeder extends Seeder
         Site::create([
             'page' => 'home',
             'section' => 'banner',
-            'text' => 'conteudo banner',
+            'text' => 'titulo banner',
+            'subtitle' => 'subtitulo banner',
             'image' => 'caminho_img_banner'
         ]);
 
@@ -25,6 +26,7 @@ class SitesSeeder extends Seeder
             'page' => 'home',
             'section' => 'sobre',
             'text' => 'conteudo sobre',
+            'subtitle' => 'subtitulo sobre',
             'image' => 'caminho_img_sobre'
         ]);
 
@@ -32,6 +34,7 @@ class SitesSeeder extends Seeder
             'page' => 'home',
             'section' => 'cta',
             'text' => 'conteudo cta',
+            'subtitle' => 'subtitulo cta',
             'image' => 'caminho_img_cta'
         ]);
 
@@ -39,6 +42,7 @@ class SitesSeeder extends Seeder
             'page' => 'home',
             'section' => 'formulario',
             'text' => 'conteudo formulario',
+            'subtitle' => 'subtitulo formulario',
             'image' => 'caminho_img_form'
         ]);
     }

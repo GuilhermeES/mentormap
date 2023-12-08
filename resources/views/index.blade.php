@@ -11,11 +11,11 @@
                 <div class="col-lg-7 order-2 order-lg-1"  data-aos="fade-right" data-aos-duration="800" data-aos-once="true">
                     <div class="banner__texts col-12 col-lg-6 text-center text-lg-start">
                         <h1> 
-                            Sua carreira guiada,
-                            <mark> seu potencial desbloqueado  </mark>
+                            {!! $site[0]->text !!}
+                            
                         </h1>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel rutrum nulla, 
+                            {{$site[0]->subtitle}}
                         </p>
                         <a href="#contato" class="button d-flex d-lg-block justify-content-center pb-3 pb-lg-0">
                             <div class="circle circle--purple">
@@ -29,10 +29,11 @@
                                 </div>
                             </div>
                         </a>
+                       
                     </div>
                 </div>
                 <div class="col-lg-4 order-1 order-lg-2 pb-5 pb-lg-0"  data-aos="fade-left" data-aos-duration="800" data-aos-once="true">
-                    <img src="{{ asset('images/banner.png') }}" alt="Mulher segurando celular na mão" class="banner__img--principal">
+                    <img src="{{ asset('images/'. $site[0]->image) }}" alt="Mulher segurando celular na mão" class="banner__img--principal">
                 </div>
             </div>
         </div>
@@ -43,23 +44,13 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6"  data-aos="fade-up" data-aos-duration="600" data-aos-once="true">
-                    <img src="{{ asset('images/sobre.png') }}" alt="Mulher sorridente" class="img-fluid"> 
+                    <img src="{{ asset('images/'. $site[1]->image) }}" alt="Mulher sorridente" class="img-fluid"> 
                 </div>
                 <div class="col-lg-6 pt-5 pt-lg-0"  data-aos="fade-up" data-aos-duration="800" data-aos-once="true">
                     <div class="name-section">Sobre</div>
-                    <h2 class="title">Lorem ipsum dolor sit amet, consectetur</h2>
+                    <h2 class="title"> {{$site[1]->text}} </h2>
                     <div class="subtitle">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        Phasellus vel rutrum nulla,
-                        at laoreet tortor. Maecenas id fringilla dolor. Sed finibus et odio id mattis. Fusce nec vestibulum dolor.
-                        <br><br>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        Phasellus vel rutrum nulla,
-                        at laoreet tortor. Maecenas id fringilla dolor. Sed finibus et odio id mattis. Fusce nec vestibulum dolor.
-                        <br><br>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        Phasellus vel rutrum nulla,
-                        at laoreet tortor. Maecenas id fringilla dolor. Sed finibus et odio id mattis. Fusce nec vestibulum dolor.
+                        {!! $site[1]->subtitle !!}
                     </div>
                     <a href="#contato" class="button d-flex d-lg-block  pb-3 pb-lg-0" >
                         <div class="circle circle--purple">
@@ -85,12 +76,10 @@
             <div class="row align-items-center">
                 <div class="col-lg-5 text-center text-lg-start cta__texts"  data-aos="fade-right" data-aos-duration="600" data-aos-once="true">
                     <h2 class="title title--white">
-                        Lorem ipsum dolor sit amet, consectetur
+                        {{$site[2]->text}}
                     </h2>
                     <div class="subtitle subtitle--white">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        Phasellus vel rutrum nulla, at laoreet tortor. Maecenas id fringilla dolor. 
-                        Sed finibus et odio id mattis. Fusce nec vestibulum dolor.
+                        {!! $site[2]->subtitle !!}
                     </div>
                     <a href="#contato" class="button d-flex d-lg-block justify-content-center pb-3 pb-lg-0">
                         <div class="circle">
@@ -106,7 +95,7 @@
                     </a>
                 </div>
                 <div class="col-lg-7 text-end"  data-aos="fade-up" data-aos-duration="800" data-aos-once="true">
-                    <img src="{{ asset('images/cta.png') }}" alt="" class="img-fluid">
+                    <img src="{{ asset('images/'. $site[2]->image) }}" alt="" class="img-fluid">
                 </div>
             </div>
             <img src="{{ asset('images/proposito.png') }}" alt="Proposito" class="cta__proposito">
@@ -119,11 +108,9 @@
            <div class="row">
                 <div class="col-md-5"  data-aos="fade-up" data-aos-duration="600" data-aos-once="true">
                     <div class="name-section">Contato</div>
-                    <h2 class="title">Vamos conversar</h2>
+                    <h2 class="title">{{$site[3]->text}}</h2>
                     <div class="subtitle">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Phasellus vel rutrum nulla, at laoreet tortor. Maecenas id
-                        fringilla dolor. Sed finibus et odio id mattis. Fusce nec vestibulum dolor.
+                        {!! $site[3]->subtitle !!}
                     </div>
                     <img class="pt-4" src="{{ asset('images/star.png') }}" alt="Star">
                 </div>

@@ -9,5 +9,5 @@ class Site extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['page','section', 'text', 'image'];
+    protected $fillable = ['page','section', 'text', 'subtitle', 'image'];
 }

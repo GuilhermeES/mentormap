@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\LoginController;
@@ -15,16 +16,13 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-Route::get('/', function () { return view('index');});
+Route::get('/',  [HomeController::class, 'index'])->name('home');
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login-post', [LoginController::class, 'login'])->name('login.post');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::prefix('dashboard')->middleware(['auth'])->name('dashboard.')->group(function () {
-    //  /dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('index');
-
-    // /dashboard/gerenciar
     Route::get('/gerenciar', [DashboardController::class, 'gerenciar'])->middleware(['admin'])->name('gerenciar');
 });
 

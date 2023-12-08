@@ -9,7 +9,6 @@ class SiteController extends Controller
 {
     public function storeOrUpdate(Request $request, $id = null) {
         $dados = request()->except(['_token']);
-
         
         // Verifica se há um arquivo de imagem na requisição
         if (request()->hasFile('image')) {
@@ -30,6 +29,7 @@ class SiteController extends Controller
         if ($id) {
             // Se o ID foi fornecido, tenta localizar e atualizar o registro existente
             $registro = Site::findOrFail($id);
+            
             $registro->update($dados);
             $mensagem = 'Registro atualizado com sucesso!';
         } else {

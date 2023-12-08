@@ -5,13 +5,13 @@
             <nav class="d-block d-lg-flex footer__nav">
                 <ul class="d-block d-lg-flex ">
                     <li>
-                        <a href="#banner"> Início </a>
+                        <a class="nav-link" href="{{ Route::currentRouteName() === 'home' ? '#banner' : route('home') . '#banner' }}"> Início </a>
                     </li>
                     <li>
-                        <a href="#plataforma"> Nossa plataforma </a>
+                        <a class="nav-link" href="{{ Route::currentRouteName() === 'home' ? '#plataforma' : route('home') . '#plataforma' }}"> Nossa plataforma </a>
                     </li>
                     <li>
-                        <a href="#contato"> Contato </a>
+                        <a class="nav-link" href="{{ Route::currentRouteName() === 'home' ? '#contato' : route('home') . '#contato' }}"> Contato </a>
                     </li>
                 </ul>
             </nav>

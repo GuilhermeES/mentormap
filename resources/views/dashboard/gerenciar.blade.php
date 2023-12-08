@@ -36,24 +36,27 @@
                                 <div class="gerenciar__section">Seção {{ $item->id }}</div>
                                 <div class="gerenciar__name"> {{ $item->section }} </div>
                                 <div class="row pt-4 ">
-                                    <div class="col-md-7">
+                                    <div class="{{ $item->id != 4 ? 'col-md-7' : 'col-md-12' }}">
                                         <div class="gerenciar__text">
-                                            <textarea class="gerenciar__textarea" name="text">{{ $item->text }}</textarea>
+                                            <input type="text" class="form-control mb-3" name="text" value="{{ $item->text }}">
+                                            <textarea class="gerenciar__textarea" name="subtitle">{{ $item->subtitle }}</textarea>
                                             <img src="{{ asset('images/edit.svg') }}" alt="">
                                         </div>
                                     </div>
-                                    <div class="col-md-5">
-                                        <div class="gerenciar__img p-4">
-                                            <div class="gerenciar__input pb-4">
-                                                <label for="image">
-                                                    <input  class="gerenciar__input-file" type="file" id="image" name="image" accept="image/png, image/jpeg" />
-                                                </label>
+                                    @if($item->id != 4 )
+                                        <div class="col-md-5">
+                                            <div class="gerenciar__img p-4">
+                                                <div class="gerenciar__input pb-4">                                               
+                                                    <label for="image">
+                                                        <input  class="gerenciar__input-file" type="file" id="image" name="image" accept="image/png, image/jpeg" />
+                                                    </label>                                           
+                                                </div>
+                                                @if($item->image)
+                                                    <img src="{{ asset('images/' . $item->image) }}" alt="Imagem" class="imagem-preview">
+                                                @endif
                                             </div>
-                                            @if($item->image)
-                                                <img src="{{ asset('images/' . $item->image) }}" alt="Imagem" class="imagem-preview">
-                                            @endif
                                         </div>
-                                    </div>
+                                    @endif
                                 </div>
                                 <div class="text-center text-md-end pt-4">
                                     <button type="submit" class="btn gerenciar__submit"> Salvar alterações </button>

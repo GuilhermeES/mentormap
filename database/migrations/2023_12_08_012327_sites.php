@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('page');
             $table->string('section');
-            $table->string('text');
-            $table->string('image');
+            $table->longText('text');
+            $table->longText('subtitle');
+            $table->string('image')->nullable();;
             $table->timestamps();
         });
     }
@@ -29,3 +30,5 @@ return new class extends Migration
         //
     }
 };
+
+
