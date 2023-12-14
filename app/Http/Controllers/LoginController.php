@@ -13,7 +13,7 @@ class LoginController extends Controller
 
     public function login(Request $request) {
 
-        $request->validate([
+        $credentials = $request->validate([
             'email' => 'required|string',
             'password' => 'required|string',
         ],[
@@ -23,9 +23,8 @@ class LoginController extends Controller
             'password.string' => 'O campo senha deve ser uma string.',
         ]);
 
-        $credentials = $request->only('email', 'password');
-
         if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
             return redirect()->intended('/dashboard');
         } else {
             return redirect()->back()->with('error', 'Credenciais inválidas. Tente novamente.');

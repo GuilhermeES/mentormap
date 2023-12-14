@@ -17,6 +17,18 @@
     }
 }
 
+.form-select{
+    width: 100%;
+    background-color: #F9F9FF;
+    height: 55px;
+
+    &:focus{
+        box-shadow: unset;
+        border-color: $purple;
+    }
+
+}
+
 textarea{
     height: 116px !important;
     color: #717171;
@@ -27,6 +39,8 @@ textarea{
         opacity: 0.9;
     }
 }
+
+
 
 .gerenciar{
     &__textarea{

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContatoMail;
-use Illuminate\Support\Facades\Validator;
 
 class ContatoController extends Controller
 {

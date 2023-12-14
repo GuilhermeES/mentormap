@@ -37,6 +37,12 @@
             background-color: #0c194b;
             color: #ffffff;
         }
+
+        &:disabled{
+            background-color: #6c757d !important;
+            border: none;
+            color: #ffffff !important;
+        }
     }
 
     &__no-acount{

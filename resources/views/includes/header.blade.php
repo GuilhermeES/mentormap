@@ -25,8 +25,8 @@
                         <a href="{{route('login')}}" class="btn header__btn header__btn--ghost me-3">
                             Login
                         </a>
-                        <a href="#" class="btn header__btn header__btn--normal">
-                            Em breve
+                        <a href="{{route('cadastro')}}" class="btn header__btn header__btn--normal">
+                            Cadastro
                         </a>
                     </div>
                 </ul>
@@ -35,8 +35,8 @@
                 <a href="{{route('login')}}" class="btn header__btn header__btn--ghost">
                     Login
                 </a>
-                <a href="#" class="btn header__btn header__btn--normal">
-                    Em breve
+                <a href="{{route('cadastro')}}" class="btn header__btn header__btn--normal">
+                    Cadastro
                 </a>
             </div>
         </div>

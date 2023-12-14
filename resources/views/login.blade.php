@@ -14,6 +14,11 @@
         <div class="login__form">
             <h1> Acessar sua conta </h1>
             <p> Insira os detalhes da sua conta abaixo para fazer login. </p>
+            @if(session('success_register'))
+                <div class="alert alert-success">
+                    {{ session('success_register') }}
+                </div>
+            @endif
             <form action="{{route('login.post')}}" method="POST">
                 @csrf
                 @if(session('error'))
@@ -35,11 +40,9 @@
                 </div>
                 <button type="submit" class="btn login__submit mt-2"> Entrar </button>
             </form>
-            <!--
             <div class="pt-3 login__no-acount">
-                Não possui uma conta ? <a href="">Crie uma conta</a>
+                Não possui uma conta ? <a href="{{route('cadastro')}}">Crie uma conta</a>
             </div>
-            -->
         </div>
     </section>
 

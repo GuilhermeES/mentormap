@@ -17,6 +17,7 @@ document.querySelectorAll('.nav-link').forEach(anchor => {
     });
 });
 
+//Formata input de telefone no formulario de contato
 function formatarTelefone(input) {
     let phoneNumber = input.value.replace(/\D/g, '');
 

@@ -52,5 +52,9 @@
             </script>
         @endif
         
+        @if(request()->is('cadastro'))
+            <script src="{{ asset('js/register.js') }}"></script>
+        @endif
+
     </body>
 </html>
