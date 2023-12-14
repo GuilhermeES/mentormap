@@ -3,6 +3,12 @@
 @section('content')
     @include('includes/header')
 
+    @if(session('anchor'))
+        <script>
+            window.location.hash = '{{ session('anchor') }}';
+        </script>
+    @endif
+
     <section class="banner" id="banner">
         <img src="{{ asset('images/bg_banner_1.svg') }}" alt="" class="banner__img--decorative-one">
         <img src="{{ asset('images/bg_banner_2.svg') }}" alt="" class="banner__img--decorative">
@@ -118,20 +124,37 @@
                     <div class="contact__line mx-auto"></div>
                 </div>
                 <div class="col-md-5 mx-auto"  data-aos="fade-up" data-aos-duration="800" data-aos-once="true">
-                    <form action="" method="POST">
+                    <form action="{{ route('enviar.email') }}" method="POST">
                         @csrf
                         <div class="mb-3">
-                            <input class="form-control" type="text" name="nome" placeholder="Nome" required>
+                            <input class="form-control" type="text" name="nome" placeholder="Nome *" required>
+                            @error('nome')
+                                <p class="text-danger pt-2">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="mb-3">
-                            <input class="form-control" type="email" name="email" placeholder="E-mail" required>
+                            <input class="form-control" type="email" name="email" placeholder="E-mail *" required>
+                            @error('email')
+                                <p class="text-danger pt-2">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="mb-3">
-                            <input class="form-control" type="text" name="telefone" placeholder="Telefone" required>
+                            <input class="form-control" type="text" name="telefone" placeholder="Telefone *" oninput="formatarTelefone(this)" maxlength="17" required>
+                            @error('telefone')
+                                <p class="text-danger pt-2">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="mb-3">
-                            <textarea class="form-control" name="mensagem" placeholder="Mensagem" required></textarea>
+                            <textarea class="form-control" name="mensagem" placeholder="Mensagem *" required></textarea>
+                            @error('mensagem')
+                                <p class="text-danger pt-2">{{ $message }}</p>
+                            @enderror
                         </div>
+                        @if(session('success'))
+                            <div class="alert alert-success ">
+                                {{ session('success') }}
+                            </div>
+                        @endif
                         <div class="text-end">
                             <button type="submit" class="submit-form me-4">
                                 <div class="button d-flex d-lg-block justify-content-end pb-3 pb-lg-0">

@@ -16,3 +16,17 @@ document.querySelectorAll('.nav-link').forEach(anchor => {
         scrollToAnchor(targetId);
     });
 });
+
+function formatarTelefone(input) {
+    let phoneNumber = input.value.replace(/\D/g, '');
+
+    if (phoneNumber.length >= 2) {
+        input.value = `(${phoneNumber.slice(0, 2)}`;
+    }
+    if (phoneNumber.length > 2) {
+        input.value += `) ${phoneNumber.slice(2, 7)}`;
+    }
+    if (phoneNumber.length > 7) {
+        input.value += `-${phoneNumber.slice(7, 11)}`;
+    }
+}

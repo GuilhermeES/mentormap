@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ContatoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,3 +28,4 @@ Route::prefix('dashboard')->middleware(['auth'])->name('dashboard.')->group(func
 });
 
 Route::post('/site/{id?}', [SiteController::class, 'storeOrUpdate'])->name('site.storeOrUpdate');
+Route::post('/enviar-email', [ContatoController::class, 'enviarEmail'])->name('enviar.email');

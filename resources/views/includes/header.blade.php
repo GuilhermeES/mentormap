@@ -25,8 +25,8 @@
                         <a href="{{route('login')}}" class="btn header__btn header__btn--ghost me-3">
                             Login
                         </a>
-                        <a href="/cadastro" class="btn header__btn header__btn--normal">
-                            Cadastro
+                        <a href="#" class="btn header__btn header__btn--normal">
+                            Em breve
                         </a>
                     </div>
                 </ul>
