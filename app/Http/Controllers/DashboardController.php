@@ -12,6 +12,10 @@ class DashboardController extends Controller
         return view('dashboard.index');
     }
 
+    public function usuarios() {
+        return view('dashboard.usuarios');
+    }
+
     public function gerenciar() {
         $registros = Site::all();
         return view('dashboard.gerenciar', ['registros' => $registros]);

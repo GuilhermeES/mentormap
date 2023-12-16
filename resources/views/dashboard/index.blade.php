@@ -15,7 +15,7 @@
                 <div class="content__bg-text"></div>
                 <div class="content__title-page">
                     <h1 class="title title--white pb-2">Bem vindo</h1>
-                    <h3 class="user"> {{ auth()->user()->name }} </h3>
+                    <h3 class="user-name"> {{ auth()->user()->name }} </h3>
                 </div>
             </div>
         
@@ -42,11 +42,11 @@
                                 </a>
                             </div>
                             <div class="col-md-6">
-                                <a href="" class="content__link">
+                                <a href="{{ route('dashboard.usuarios') }}" class="content__link">
                                     <img src="{{ asset('images/dashboard/usuarios.svg') }}" alt="Verificação de usuarios">
                                     <div class="content__link-body ps-4 pe-4">
                                         <h3> Usuários cadastrados </h3>
-                                        <p> Em breve </p>
+                                        <p> Acessar </p>
                                     </div>
                                 </a>
                             </div>

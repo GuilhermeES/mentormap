@@ -19,19 +19,6 @@
         text-transform: uppercase;
     }
 
-    &__submit{
-        background-color: $iris;
-        color: #ffffff;
-        padding: 10px 40px 10px 40px;
-        font-size: 18px;
-        transition: 0.4s all;
-
-        &:hover{
-            background-color: #342b77;
-            color: #ffffff;
-        }
-    }
-
     &__input{
         &-file{
             font-size: 12px;

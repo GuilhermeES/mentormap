@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class SiteController extends Controller
 {
+
     public function storeOrUpdate(Request $request, $id = null) {
         $dados = request()->except(['_token']);
         

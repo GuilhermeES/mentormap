@@ -28,7 +28,9 @@ Route::post('/cadastro-user', [RegisterController::class, 'register'])->name('ca
 
 Route::prefix('dashboard')->middleware(['auth'])->name('dashboard.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('index');
+
     Route::get('/gerenciar', [DashboardController::class, 'gerenciar'])->middleware(['admin'])->name('gerenciar');
+    Route::get('/usuarios', [DashboardController::class, 'usuarios'])->middleware(['admin'])->name('usuarios');
 });
 
 Route::post('/site/{id?}', [SiteController::class, 'storeOrUpdate'])->name('site.storeOrUpdate');

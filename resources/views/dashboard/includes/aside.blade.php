@@ -15,6 +15,12 @@
                     Gerenciar site
                 </a>
             @endif
+            @if( auth()->user()->admin )
+                <a href="{{ route('dashboard.usuarios') }}" class="{{ (request()->segment(2) == 'usuarios') ? 'active' : '' }}">
+                    <i class="fa-solid fa-users"></i>
+                    Usuários
+                </a>
+            @endif
         </nav>
     </div>
     <div class="aside__hr"><hr></div>

@@ -24,10 +24,8 @@ class ContatoController extends Controller
             'mensagem.required' => 'O campo mensagem é obrigatório.',
         ]);
 
-        // Envie o e-mail
         Mail::to('guilhermestevao123@gmail.com')->send(new ContatoMail($dados));
 
-        // Redirecione ou retorne uma resposta de sucesso
         return redirect()->back()->with('success', 'E-mail enviado com sucesso!')->with('anchor', '#contato');
 
     }

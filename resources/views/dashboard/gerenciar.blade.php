@@ -59,7 +59,7 @@
                                     @endif
                                 </div>
                                 <div class="text-center text-md-end pt-4">
-                                    <button type="submit" class="btn gerenciar__submit"> Salvar alterações </button>
+                                    <button type="submit" class="btn button-dashboard"> Salvar alterações </button>
                                 </div>
                             </div>
                         </div>
