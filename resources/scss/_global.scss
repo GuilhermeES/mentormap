@@ -1,3 +1,7 @@
+body{
+    padding-right: unset !important;
+}
+
 .button{
     text-decoration: none;
     padding-top: 40px;
@@ -80,6 +84,10 @@
         background-color: #342b77;
         color: #ffffff;
     }
+
+    &--search{
+        border-radius: unset;
+    }
 }
 
 .submit-form{
@@ -95,4 +103,38 @@
     &:focus{
         box-shadow: none;
     }
+}
+
+.page-link{
+    color: $iris;
+
+    &:focus{
+        box-shadow: unset;
+    }
+}
+
+.active>.page-link, .page-link.active{
+    background-color: $iris;
+    border-color: $iris;
+}
+
+.modal{
+    padding-right: 0 !important;
+
+    i{
+        color: green;
+    }
+}
+
+.navigation{
+
+    nav{
+        display: flex;
+    }
+
+    svg{
+        width: 20px;
+    }
+
+   
 }

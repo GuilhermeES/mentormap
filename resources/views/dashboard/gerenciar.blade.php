@@ -29,7 +29,7 @@
                 @endif
 
                 @foreach ($registros as $item)
-                    <form method="post" action="{{ route('site.storeOrUpdate', $item->id ?? null) }}" enctype="multipart/form-data">     
+                    <form method="post" action="{{ route('gerenciar.storeOrUpdate', $item->id ?? null) }}" enctype="multipart/form-data">     
                         @csrf
                         <div class="gerenciar-list">
                             <div class="gerenciar p-4 mb-4">

@@ -5,8 +5,12 @@ use App\Models\Site;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class SiteController extends Controller
+class GerenciarController extends Controller
 {
+    public function index() {
+        $registros = Site::all();
+        return view('dashboard.gerenciar', ['registros' => $registros]);
+    }
 
     public function storeOrUpdate(Request $request, $id = null) {
         $dados = request()->except(['_token']);

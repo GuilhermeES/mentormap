@@ -24,39 +24,43 @@
                     <div class="col-md-6 pb-3 pb-md-0">
                         <div class="mb-2">Ordenar por:</div>
                         <div class="user__filter-buttons d-flex gap-3">
-                            <button type="button" class="btn button-dashboard--filter button-dashboard"> Ordem alfabética </button>
-                            <button type="button" class="btn button-dashboard--filter button-dashboard"> Data de inscrição </button>
+                             <button type="button" class="btn button-dashboard--filter button-dashboard" 
+                                onclick="window.location='{{ route('dashboard.usuarios', ['order' => 'alphabetical', 'search' => $search]) }}'">
+                                Ordem alfabética
+                            </button>
                         </div>
                     </div>
-                    <div class="user__search col-md-5">
-                        <input type="text" class="form-control" placeholder="Pesquisar">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <circle cx="10" cy="10" r="6" stroke="#342B77" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M14.5 14.5L19 19" stroke="#342B77" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
+                    <div class="user__search col-md-6">
+                        <form action="#" class="d-flex" method="GET">
+                            <input name="search" type="text" class="form-control" placeholder="Pesquisar">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <circle cx="10" cy="10" r="6" stroke="#342B77" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M14.5 14.5L19 19" stroke="#342B77" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <button type="submit" class="btn button-dashboard button-dashboard--search">Buscar</button>
+                        </form>
                     </div>
                 </div>
                 <ul class="user__list">
-                    <li class="p-4 mb-3 d-block d-md-flex align-items-center justify-content-between">
-                        <div class="user__list mb-3 mb-md-0">
-                            <h3> Nome do usuario </h3>
-                            <div class="user__cargo">Cargo</div>
-                        </div>
-                        <div class="user__info">
-                            <a href="" class="btn button-dashboard"> Visualizar perfil </a>
-                        </div>
-                    </li>
-                    <li class="p-4 mb-3 d-flex align-items-center justify-content-between">
-                        <div class="user__list">
-                            <h3> Nome do usuario </h3>
-                            <div class="user__cargo">Cargo</div>
-                        </div>
-                        <div class="user__info">
-                            <a href="" class="btn button-dashboard"> Visualizar perfil </a>
-                        </div>
-                    </li>
+                    @foreach ($users as $user)
+                        <li class="p-4 mb-3 d-block d-md-flex align-items-center justify-content-between">
+                            <div class="user__list mb-3 mb-md-0">
+                                <h3> {{ $user->name }} </h3>
+                                <div class="user__cargo">{{ $user->cargo }}</div>
+                            </div>
+                            <div class="user__info">
+                                <button href="" class="btn button-dashboard" data-bs-toggle="modal" data-bs-target="#modal-{{$user->id}}"> Visualizar </button>
+                            </div>
+                            @include('dashboard/includes/modal', ['user' => $user])
+                        </li>
+                    @endforeach
                 </ul>
+            <div class="navigation">
+                {{ $users->appends(['search' => request()->get('search', '')])->links() }}
             </div>
+            <div class="user__total">
+                Total de <strong>{{ $users->total() }}</strong> Usuários encontrados
+           </div>
         </div>
     </div>
     

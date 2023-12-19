@@ -1,12 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\SiteController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\RegisterController;
+
+/* ------- Dashboard Controllers ---------- */
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\GerenciarController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,9 +34,9 @@ Route::post('/cadastro-user', [RegisterController::class, 'register'])->name('ca
 Route::prefix('dashboard')->middleware(['auth'])->name('dashboard.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('index');
 
-    Route::get('/gerenciar', [DashboardController::class, 'gerenciar'])->middleware(['admin'])->name('gerenciar');
-    Route::get('/usuarios', [DashboardController::class, 'usuarios'])->middleware(['admin'])->name('usuarios');
+    Route::get('/gerenciar', [GerenciarController::class, 'index'])->middleware(['admin'])->name('gerenciar');
+    Route::get('/usuarios', [UsersController::class, 'showAllUsers'])->middleware(['admin'])->name('usuarios');
 });
 
-Route::post('/site/{id?}', [SiteController::class, 'storeOrUpdate'])->name('site.storeOrUpdate');
+Route::post('/site/{id?}', [GerenciarController::class, 'storeOrUpdate'])->middleware(['admin'])->name('gerenciar.storeOrUpdate');
 Route::post('/enviar-email', [ContatoController::class, 'enviarEmail'])->name('enviar.email');
