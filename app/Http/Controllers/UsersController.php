@@ -10,7 +10,7 @@ class UsersController extends Controller
     public function showAllUsers(Request $request)
     {
         $search = $request->input('search');
-        $order = $request->input('order', 'default'); // Adicionando um novo parâmetro para a ordenação
+        $order = $request->input('order', 'default'); 
     
         $query = User::query()->where('admin', 0);
     

@@ -9,11 +9,14 @@
             <div class="pt-1"> <strong>E-mail:</strong> {{$user->email}} </div>
             <div class="pt-1"> <strong>Data de nascimento:</strong>  {{ \Carbon\Carbon::parse($user->data_nascimento)->format('d/m/Y') }} </div>
             <div class="pt-1"> <strong>Gênero:</strong> {{$user->sexo}} </div>
+            <div class="pt-1"> <strong>Trajetória profissional:</strong> {{$user->trajetoria_profissional}} </div>
             <h3 class="pt-4"> Testes concluídos: </h3>
+            <!--
             <div class="pt-1 d-flex align-items-center gap-3">
                 <div class="pt-1">Lore Ipsum</div>
                 <i class="fa-solid fa-check"></i>
             </div>
+        -->
         </div>
         <div class="modal-footer">
             <button type="button" class="btn button-dashboard" data-bs-dismiss="modal">Fechar</button>

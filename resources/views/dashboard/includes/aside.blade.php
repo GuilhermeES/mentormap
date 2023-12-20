@@ -21,6 +21,10 @@
                     Usuários
                 </a>
             @endif
+                <a href="{{ route('dashboard.perfil') }}" class="{{ (request()->segment(2) == 'perfil') ? 'active' : '' }}">
+                    <i class="fa-solid fa-user"></i>
+                    Meus dados
+                </a>
         </nav>
     </div>
     <div class="aside__hr"><hr></div>

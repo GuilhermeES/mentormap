@@ -11,6 +11,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\GerenciarController;
+use App\Http\Controllers\PerfilController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,10 @@ Route::prefix('dashboard')->middleware(['auth'])->name('dashboard.')->group(func
 
     Route::get('/gerenciar', [GerenciarController::class, 'index'])->middleware(['admin'])->name('gerenciar');
     Route::get('/usuarios', [UsersController::class, 'showAllUsers'])->middleware(['admin'])->name('usuarios');
+
+    Route::get('/perfil', [PerfilController::class, 'index'])->name('perfil');
+    Route::post('/alterar-senha', [PerfilController::class, 'changePassword'])->name('senha');
+    Route::post('/alterar-dados', [PerfilController::class, 'changeData'])->name('dados');
 });
 
 Route::post('/site/{id?}', [GerenciarController::class, 'storeOrUpdate'])->middleware(['admin'])->name('gerenciar.storeOrUpdate');

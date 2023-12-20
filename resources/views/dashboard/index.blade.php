@@ -52,11 +52,11 @@
                             </div>
                         @endif
                         <div class="col-md-6 mb-5">
-                            <a href="" class="content__link">
+                            <a href="{{ route('dashboard.perfil') }}" class="content__link">
                                 <img src="{{ asset('images/dashboard/dados.svg') }}" alt="Informações para acessar dados">
                                 <div class="content__link-body ps-4 pe-4">
                                     <h3> Meus dados </h3>
-                                    <p> Em breve </p>
+                                    <p> Acessar </p>
                                 </div>
                             </a>
                         </div>

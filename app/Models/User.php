@@ -23,6 +23,7 @@ class User extends Authenticatable
         'cargo',
         'sexo',
         'data_nascimento',
+        'trajetoria_profissional',
         'password',
         'admin',
     ];

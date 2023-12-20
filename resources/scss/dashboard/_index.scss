@@ -1,6 +1,8 @@
 .content{
     width: 100%;
     margin-left: 256px;
+    background-color: #f9f9f9;
+    height: 100vh;
 
     &__top{
         background-color: #342b77;
@@ -43,6 +45,7 @@
     &__body{
         padding-left: 60px;
         padding-right: 60px;
+        background-color: #f9f9f9;
 
         &--links{
             position: relative;
