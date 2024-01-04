@@ -59,7 +59,7 @@
                 {{ $users->appends(['search' => request()->get('search', '')])->links() }}
             </div>
             <div class="user__total">
-                Total de <strong>{{ $users->total() }}</strong> Usuários encontrados
+                Total de <strong>{{ $users->total() }}</strong> usuários encontrados
            </div>
         </div>
     </div>

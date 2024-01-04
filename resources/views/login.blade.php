@@ -19,6 +19,11 @@
                     {{ session('success_register') }}
                 </div>
             @endif
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
             <form action="{{route('login.post')}}" method="POST">
                 @csrf
                 @if(session('error'))
@@ -42,6 +47,9 @@
             </form>
             <div class="pt-3 login__no-acount">
                 Não possui uma conta ? <a href="{{route('cadastro')}}">Crie uma conta</a>
+            </div>
+            <div class="login__no-acount">
+               Esqueceu sua senha ? <a href="{{route('recuperar-senha')}}">Resetar senha</a>
             </div>
         </div>
     </section>

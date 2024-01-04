@@ -9,10 +9,26 @@
                 <i class="fa-solid fa-house"></i>
                 Tela inicial
             </a>
+            <a href="{{ route('dashboard.testes') }}" class="{{ (request()->segment(2) == 'testes') ? 'active' : '' }}">
+                <i class="fa-solid fa-clipboard"></i>
+                Meus testes
+            </a>
             @if( auth()->user()->admin )
                 <a href="{{ route('dashboard.gerenciar') }}" class="{{ (request()->segment(2) == 'gerenciar') ? 'active' : '' }}">
                     <i class="fa-solid fa-desktop"></i>
                     Gerenciar site
+                </a>
+            @endif
+            @if( auth()->user()->admin )
+                <a href="{{ route('dashboard.gerenciar-testes') }}" class="{{ (request()->segment(2) == 'gerenciar-testes') ? 'active' : '' }}">
+                    <i class="fa-solid fa-clipboard"></i>
+                    Gerenciar testes
+                </a>
+            @endif
+            @if( auth()->user()->admin )
+                <a href="{{ route('dashboard.gerenciar-resultados') }}" class="{{ (request()->segment(2) == 'gerenciar-resultados') ? 'active' : '' }}">
+                    <i class="fa-solid fa-clipboard"></i>
+                    Gerenciar Resultados
                 </a>
             @endif
             @if( auth()->user()->admin )

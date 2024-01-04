@@ -14,6 +14,8 @@
 
         @if(request()->is('dashboard*'))
             <script src="https://kit.fontawesome.com/b4a5f4472e.js" crossorigin="anonymous"></script>
+            <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+            <script src="https://cdn.tiny.cloud/1/1h6ds99kmoqoc6k83e0s4hcoxlgdcb4invz616x5evgldp2j/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
         @endif
 
         @vite(['resources/scss/app.scss'])
@@ -29,6 +31,9 @@
 
         <meta property="og:title" content="Mentormap" />
         <meta property="og:image" content="{{ asset('images/banner.png') }}" />
+
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        
 
     </head>
     <body>
@@ -56,6 +61,7 @@
         @if(request()->is('cadastro'))
             <script src="{{ asset('js/register.js') }}"></script>
         @endif
+
 
     </body>
 </html>

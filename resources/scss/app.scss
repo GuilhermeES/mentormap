@@ -10,6 +10,7 @@ $light-orange: #FFE7C2;
 $light-orange-2: #FFF4E3;
 $primary-blue: #3A4B87;
 $iris: #5D5FEF;
+$alert: #FFCD4B;
 
 html{
     overflow-x: hidden;
@@ -39,6 +40,7 @@ body{
 @import 'dashboard/gerenciar';
 @import 'dashboard/usuarios';
 @import 'dashboard/perfil';
+@import 'dashboard/teste';
 
 @import 'login';
 @import 'footer';

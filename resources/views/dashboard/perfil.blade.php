@@ -21,7 +21,7 @@
             </div>
         
             <div class="content__body content__body--user mb-5 pb-4 user">
-                <div class="col-md-8">
+                <div class="col-md-9 mx-auto">
                     @if(session('success'))
                         <div class="alert alert-success">
                             {{ session('success') }}
@@ -41,7 +41,7 @@
                             </div>
                             <div class="mb-2 pt-3">
                                 <label for="email" class="form-label form-label--ghost">E-mail:</label>
-                                <input type="text" class="form-control form-control--ghost" id="email" name="email" value="{{$user->email}}" required>
+                                <input type="text" class="form-control form-control--ghost" id="email" name="email" value="{{$user->email}}" required disabled>
                             </div>
                             <div class="mb-3 pt-3">
                                 <label for="cargo" class="form-label form-label--ghost">Cargo:</label>

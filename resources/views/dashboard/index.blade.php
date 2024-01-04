@@ -33,11 +33,11 @@
                                 </a>
                             </div>
                             <div class="col-md-6 mb-5">
-                                <a href="" class="content__link">
+                                <a href="{{ route('dashboard.gerenciar-testes') }}" class="content__link">
                                     <img src="{{ asset('images/dashboard/testes.svg') }}" alt="Mulher no notebook">
                                     <div class="content__link-body ps-4 pe-4">
                                         <h3> Gerenciar testes </h3>
-                                        <p> Em breve </p>
+                                        <p> Acessar </p>
                                     </div>
                                 </a>
                             </div>
@@ -60,6 +60,17 @@
                                 </div>
                             </a>
                         </div>
+                        @if(!auth()->user()->admin )
+                            <div class="col-md-6 mb-5">
+                                <a href="{{ route('dashboard.testes') }}" class="content__link">
+                                    <img src="{{ asset('images/dashboard/testes.svg') }}" alt="Mulher no notebook">
+                                    <div class="content__link-body ps-4 pe-4">
+                                        <h3> Testes disponíveis </h3>
+                                        <p> Acessar </p>
+                                    </div>
+                                </a>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
