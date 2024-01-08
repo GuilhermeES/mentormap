@@ -151,6 +151,30 @@ class TestsController extends Controller
         return redirect()->route('dashboard.gerenciar-testes')->with('success', 'Questionário atualizado com sucesso');
     }
 
+    public function deleteTeste($id, Request $request){
+        $quiz = Quiz::find($id);
+
+        if ($quiz) {
+            $quiz->delete();
+
+            return response()->json(['mensagem' => 'Recurso excluído com sucesso']);
+        } else {
+            return response()->json(['mensagem' => 'Recurso não encontrado'], 404);
+        }
+    }
+
+    public function deleteResult($id, Request $request){
+        $result = Result::find($id);
+
+        if ($result) {
+            $result->delete();
+
+            return response()->json(['mensagem' => 'Recurso excluído com sucesso']);
+        } else {
+            return response()->json(['mensagem' => 'Recurso não encontrado'], 404);
+        }
+    }
+
     public function store(Request $request)
     {
 

@@ -55,18 +55,20 @@ Route::prefix('dashboard')->middleware(['auth'])->name('dashboard.')->group(func
     Route::post('/gerenciar-testes/novo', [TestsController::class, 'store'])->middleware(['admin'])->name('salvar-teste');
     Route::get('/gerenciar-testes/editar/{id}', [TestsController::class, 'edit'])->middleware(['admin'])->name('editar-teste');
     Route::post('/gerenciar-testes/{id}/update}', [TestsController::class, 'update'])->middleware(['admin'])->name('update-teste');
-    Route::get('/resultado', [TestsController::class, 'resultadoScreen'])->name('resultado');
-
+    Route::delete('/gerenciar-testes/{id}', [TestsController::class, 'deleteTeste'])->middleware(['admin'])->name('delete-teste');
+    
     Route::get('/gerenciar-resultados', [TestsController::class, 'indexResultado'])->middleware(['admin'])->name('gerenciar-resultados');
     Route::get('/gerenciar-resultados/novo', [TestsController::class, 'createResultadoScreen'])->middleware(['admin'])->name('novo-resultado');
     Route::post('/gerenciar-resultados/novo', [TestsController::class, 'createResultado'])->middleware(['admin'])->name('salvar-resultado');
     Route::get('/gerenciar-resultados/editar/{id}', [TestsController::class, 'editResultado'])->middleware(['admin'])->name('editar-resultado');
+    Route::delete('/gerenciar-resultados/{id}', [TestsController::class, 'deleteResult'])->middleware(['admin'])->name('delete-resultado');
 
     Route::get('/testes', [TestsController::class, 'indexUser'])->name('testes');
     Route::get('/testes/realizar/{id}', [TestsController::class, 'realizarTest'])->name('realizar-testes');
     Route::post('/save-respostas', [TestsController::class, 'salvarRespostas'])->name('salvar-respostas');
 
     Route::get('/resultados', [TestsController::class, 'indexResultados'])->name('resultados');
+    Route::get('/resultado', [TestsController::class, 'resultadoScreen'])->name('resultado');
 
 });
 

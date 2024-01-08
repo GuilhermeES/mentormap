@@ -49,11 +49,16 @@
                                     {{ \Carbon\Carbon::parse($result->created_at)->format('d/m/Y') }}
                                 </div>
                             </div>
-                            <div class="col-md-4 text-end">
+                            <div class="col-md-4 text-end d-flex align-items-center justify-content-end gap-3">
                                 <div class="quiz__btn">
                                     <a href="{{ route('dashboard.editar-resultado', ['id' => $result->id]) }}">
                                         <button class="btn button-dashboard button-dashboard--edit"> Editar </button>
                                     </a>
+                                </div>
+                                <div class="quiz__btn">                                  
+                                    <button class="btn excluir-botao"  data-id="{{ $result->id }}"> 
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
                                 </div>
                             </div>
                         </li>
@@ -67,5 +72,28 @@
                </div>
             </div>
         </div>
+
+        <script>
+            $('.excluir-botao').on('click', function () {
+                let id = $(this).data('id');
+                let confirmacao = confirm('Tem certeza que deseja excluir este recurso?');
+    
+                if (confirmacao) {
+                    $.ajax({
+                        url: '/dashboard/gerenciar-resultados/' + id,
+                        type: 'DELETE',
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                        },
+                        success: function (data) {
+                            window.location.reload()
+                        },
+                        error: function (data) {
+                            console.log('Erro ao excluir recurso.');
+                        }
+                    });
+                }
+            });
+        </script>
     
 @endsection

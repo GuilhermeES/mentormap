@@ -49,11 +49,16 @@
                                     {{ \Carbon\Carbon::parse($quiz->created_at)->format('d/m/Y') }}
                                 </div>
                             </div>
-                            <div class="col-md-4 text-end">
+                            <div class="col-md-4 text-end d-flex align-items-center justify-content-end gap-3">
                                 <div class="quiz__btn">
                                     <a href="{{ route('dashboard.editar-teste', ['id' => $quiz->id]) }}">
                                         <button class="btn button-dashboard button-dashboard--edit"> Editar </button>
                                     </a>
+                                </div>
+                                <div class="quiz__btn">                                  
+                                    <button class="btn excluir-botao"  data-id="{{ $quiz->id }}"> 
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
                                 </div>
                             </div>
                         </li>
@@ -66,6 +71,30 @@
                     Total de <strong>{{ $quizzes->total() }}</strong> questionários encontrados
                </div>
             </div>
-    </div>
+        </div>
+    </div>  
+
+    <script>
+        $('.excluir-botao').on('click', function () {
+            let id = $(this).data('id');
+            let confirmacao = confirm('Tem certeza que deseja excluir este recurso?');
+
+            if (confirmacao) {
+                $.ajax({
+                    url: '/dashboard/gerenciar-testes/' + id,
+                    type: 'DELETE',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                    },
+                    success: function (data) {
+                        window.location.reload()
+                    },
+                    error: function (data) {
+                        console.log('Erro ao excluir recurso.');
+                    }
+                });
+            }
+        });
+    </script>
     
 @endsection
