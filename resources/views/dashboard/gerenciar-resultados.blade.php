@@ -41,7 +41,7 @@
                                     <h3> {{ $result->title }} </h3>
                                 </div>
                             </div>
-                            <div class="col-md-4 text-center">
+                            <div class="col-md-4 text-start text-md-center pb-4 pb-md-0">
                                 <div class="quiz__date">
                                     Publicado
                                 </div>
@@ -49,7 +49,7 @@
                                     {{ \Carbon\Carbon::parse($result->created_at)->format('d/m/Y') }}
                                 </div>
                             </div>
-                            <div class="col-md-4 text-end d-flex align-items-center justify-content-end gap-3">
+                            <div class="col-md-4 text-end d-flex align-items-center justify-content-start justify-content-md-end gap-3">
                                 <div class="quiz__btn">
                                     <a href="{{ route('dashboard.editar-resultado', ['id' => $result->id]) }}">
                                         <button class="btn button-dashboard button-dashboard--edit"> Editar </button>

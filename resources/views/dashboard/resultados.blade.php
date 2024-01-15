@@ -31,7 +31,7 @@
                                     <h3> {{ $userQuiz->quiz->title  }} </h3>
                                 </div>
                             </div>
-                            <div class="col-md-2 text-center">
+                            <div class="col-md-2 text-start text-md-center pb-4 pb-md-0">
                                 <div class="quiz__date">
                                     Respondido em:
                                 </div>
@@ -40,7 +40,7 @@
                                 </div>
                             </div>
                             @if(!empty($userQuiz->result))
-                                <div class="col-md-6 text-end d-flex align-items-center gap-3 justify-content-end">
+                                <div class="col-md-6 text-end d-flex align-items-center gap-3 justify-content-start justify-content-md-end">
                                     <div class="quiz__btn">
                                         <a href="#">
                                             <button href="" class="w-100 btn button-dashboard button-dashboard--start" 

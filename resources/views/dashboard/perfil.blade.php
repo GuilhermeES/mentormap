@@ -32,7 +32,7 @@
                             {{ session('error') }}
                         </div>
                     @endif  
-                    <div class="perfil__bg p-5">
+                    <div class="perfil__bg p-4 p-md-5">
                         <form method="post" action="{{ route('dashboard.dados') }}"> 
                             @csrf
                             <div class="mb-2">

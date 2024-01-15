@@ -41,7 +41,7 @@
                                 <h3> {{ $quiz->title }} </h3>
                             </div>
                         </div>
-                        <div class="col-md-4 text-center">
+                        <div class="col-md-4 text-start text-md-center pb-4 pb-md-0 ">
                             <div class="quiz__date">
                                 Publicado
                             </div>
@@ -49,7 +49,7 @@
                                 {{ \Carbon\Carbon::parse($quiz->created_at)->format('d/m/Y') }}
                             </div>
                         </div>
-                        <div class="col-md-4 text-end">
+                        <div class="col-md-4 text-start text-md-end">
                             <div class="quiz__btn">
                                 <a href="{{ route('dashboard.realizar-testes', ['id' => $quiz->id]) }}">
                                     <button class="btn button-dashboard button-dashboard--start"> Responder </button>
