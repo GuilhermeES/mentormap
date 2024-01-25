@@ -128,8 +128,33 @@ class TestsController extends Controller
 
     public function update($id, Request $request)
     {
-
         $quiz = Quiz::with('questions.answers')->find($id);
+
+        if ($request->has('perguntas') && !empty($request->input('perguntas'))) {
+
+            $jsonPerguntas = $request->input('perguntas');
+            $perguntas = json_decode($jsonPerguntas, true);
+
+            if ($perguntas !== null) {
+  
+                foreach ($perguntas as $pergunta) {
+
+                    $question = Question::create([
+                        'quiz_id' => $quiz->id,
+                        'title' => $pergunta["pergunta"],
+                    ]);
+        
+                    foreach ($pergunta['respostas'] as $dadoResposta) {
+        
+                        Answer::create([
+                            'question_id' => $question->id,
+                            'text' => $dadoResposta["resposta"],
+                            'score' => $dadoResposta["pontuacao"],
+                        ]);
+                    }
+                }
+            }
+        }
 
         $quiz->update([
             'title' => $request->input('title'),
@@ -148,6 +173,7 @@ class TestsController extends Controller
                 ]);
             }
         }
+
         return redirect()->route('dashboard.gerenciar-testes')->with('success', 'Questionário atualizado com sucesso');
     }
 
@@ -177,7 +203,6 @@ class TestsController extends Controller
 
     public function store(Request $request)
     {
-
         $question = $quiz = Quiz::create([
             'title' => $request->input('titulo'),
             'description' => $request->input('descricao'),
