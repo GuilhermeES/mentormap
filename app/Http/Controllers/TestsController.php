@@ -45,6 +45,19 @@ class TestsController extends Controller
         return view('dashboard.editar-resultados', compact('result'));
     }
 
+    public function postEditResultado(Request $request, $id)
+    {
+        $result = Result::find($id);
+
+        if (!$result) {
+            return response()->json(['mensagem' => 'Recurso não encontrado'], 404);
+        }
+
+        $result->update($request->all());
+
+        return redirect()->route('dashboard.gerenciar-resultados')->with('success', 'Resultado atualizado com sucesso');
+    }
+
     public function createResultado (Request $request) {
         $data = $request->all();
 
@@ -156,6 +169,22 @@ class TestsController extends Controller
             }
         }
 
+        if ($request->has('respostas_novas') && !empty($request->input('respostas_novas'))) {
+            $jsonRespostas = $request->input('respostas_novas');
+            $respostas = json_decode($jsonRespostas, true);
+
+            if ($respostas !== null) {
+  
+                foreach ($respostas as $resposta) {      
+                    Answer::create([
+                        'question_id' => $resposta["idPergunta"],
+                        'text' => $resposta["resposta"],
+                        'score' => $resposta["pontuacao"],
+                    ]);
+                }
+            }
+        }   
+
         $quiz->update([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
@@ -175,6 +204,30 @@ class TestsController extends Controller
         }
 
         return redirect()->route('dashboard.gerenciar-testes')->with('success', 'Questionário atualizado com sucesso');
+    }
+
+    public function deleteResposta($id, Request $request){
+
+        $answer = Answer::find($id);
+
+        if ($answer) {
+            $answer->delete();
+            return response()->json(['mensagem' => 'Recurso excluído com sucesso', 'resposta' => 'resposta_'.$id]);
+        } else {
+            return response()->json(['mensagem' => 'Recurso não encontrado'], 404);
+        }
+    }
+
+    public function deletePergunta($id, Request $request){
+
+        $question = Question::find($id);
+
+        if ($question) {
+            $question->delete();
+            return response()->json(['mensagem' => 'Recurso excluído com sucesso', 'pergunta' => 'pergunta_'.$id]);
+        } else {
+            return response()->json(['mensagem' => 'Recurso não encontrado'], 404);
+        }
     }
 
     public function deleteTeste($id, Request $request){

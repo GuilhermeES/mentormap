@@ -49,6 +49,14 @@
                 if (event.target.classList.contains('adicionarResposta')) {
                     adicionarResposta(event.target.closest('.pergunta'));
                 }
+
+                if (event.target.classList.contains('removerPergunta')) {
+                    removerPergunta(event.target.closest('.pergunta'));
+                }
+
+                if (event.target.classList.contains('removerResposta')) {
+                    removerResposta(event.target.closest('.resposta'));
+                }
             });
         });
     
@@ -58,7 +66,12 @@
             divPergunta.classList.add('pergunta');
             divPergunta.classList.add('question');
             divPergunta.innerHTML = `
-                <div class="pb-3"> Pergunta ${index} </div>
+                <div class="d-flex justify-content-between align-items-center pb-3">
+                    <div class="fw-bold"> Nova Pergunta </div>
+                    <button type="button" class="removerPergunta btn p-0"> 
+                        <i class="removerPergunta fa-solid fa-trash"></i>
+                    </button>
+                </div>
                 <input type="text" class="pergunta-input form-control" placeholder="Digite a pergunta">
                 <div class="respostas  pt-4 pb-2">
                     <!-- As respostas serão adicionadas dinamicamente aqui -->
@@ -76,13 +89,23 @@
     
         function adicionarResposta(perguntaElemento) {
             var divResposta = document.createElement('div');
+            divResposta.classList.add('resposta');
             divResposta.innerHTML = `
                 <div class="answer">
                     <input type="text" class="resposta-input form-control form-control--ghost form-control--ghost-low" placeholder="Resposta">
                     <input type="number" class="pontuacao-input form-control form-control--ghost form-control--ghost-low form-control--score"  placeholder="Pontuação">
+                    <button type="button" class="removerResposta btn ">X</button>
                 </div>
             `;
             perguntaElemento.querySelector('.respostas').appendChild(divResposta);
+        }
+        
+        function removerPergunta(perguntaElemento) {
+            perguntaElemento.remove();
+        }
+
+        function removerResposta(respostaElemento) {
+            respostaElemento.remove();
         }
     
         function enviarDadosParaLaravel() {

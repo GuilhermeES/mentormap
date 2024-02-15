@@ -163,6 +163,16 @@ body{
     }
 }
 
+.btn-deletar, .removerResposta{
+    font-weight: bold;
+    color: red;
+    padding: 0;
+}
+
+.btn:active{
+    border-color: transparent !important;
+}
+
 .active>.page-link, .page-link.active{
     background-color: $iris;
     border-color: $iris;

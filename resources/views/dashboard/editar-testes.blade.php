@@ -32,23 +32,40 @@
                     <!-- Campos das perguntas e respostas -->
                     <div id="perguntas-container">
                         @foreach($quiz->questions as $question)
-                            <div class="pergunta question">
-                                <div>
-                                    <label class="pb-3" for="question_{{ $question->id }}">Pergunta {{ $question->id }}:</label>
+                            <div class="pergunta question" id="pergunta_{{$question->id}}">
+                                <div>                
+                                    <div class="d-flex justify-content-between align-items-center pb-3">
+                                        <label for="question_{{ $question->id }}" class="fw-bold">Pergunta:</label>
+                                        <button type="button" class="p-0 btn btn-deletar-pergunta" data-id="{{ $question->id }}"> 
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </div>
                                     <input type="text" class="pergunta-input form-control" name="question_{{ $question->id }}" value="{{ $question->title }}" required>
                                 </div>
                         
-                                @foreach($question->answers as $answer)
-                                    <div class="answer respostas  pt-4 pb-2">
-                                        <input type="text" class="resposta-input form-control form-control--ghost form-control--ghost-low" name="answer_{{ $answer->id }}" value="{{ $answer->text }}" required>
-                                        <input type="text" class="resposta-input form-control form-control--ghost form-control--ghost-low" name="score_{{ $answer->id }}" value="{{ $answer->score }}" required>
-                                    </div>
-                                @endforeach
+                                <div class="respostas">
+                                    @foreach($question->answers as $answer)
+                                        <div class="answer pt-4 pb-2" id="resposta_{{$answer->id}}">
+                                            <div class="w-100">
+                                                <input type="text" class="resposta-input form-control form-control--ghost form-control--ghost-low" name="answer_{{ $answer->id }}" value="{{ $answer->text }}" required>
+                                            </div>
+                                            <div class="w-100">
+                                                <input type="text" class="resposta-input form-control form-control--ghost form-control--ghost-low" name="score_{{ $answer->id }}" value="{{ $answer->score }}" required>
+                                            </div>
+                                            <button type="button" class="btn btn-deletar" data-id="{{ $answer->id }}">X</button>
+                                        </div>                                   
+                                    @endforeach
+                                </div>
+                                <button type="button" class="adicionarRespostaExistente btn button-dashboard button-dashboard--add-option" data-id="{{$question->id}}">
+                                    Adicionar Resposta
+                                    <i class="fa-solid fa-plus ms-3" aria-hidden="true"></i>
+                                </button>
                             </div>
                         @endforeach
                     </div>
 
                     <input type="hidden" name="perguntas" id="perguntasInput">
+                    <input type="hidden" name="respostas_novas" id="respostasInput">
     
                     <!-- Botão de envio -->
                     <div class="d-block d-md-flex align-items-center justify-content-between pt-0 pt-md-5 pb-4">
@@ -58,36 +75,50 @@
                         </button> 
                         <button id="customSubmitButton" class="button-dashboard button-dashboard--finish mt-3 mt-md-0">Atualizar Quiz</button>
                     </div>
-
                 </form>
             </div>
         </div>
     </div>
 
     <script>
-        let index = 1;
-        var inputElement = document.querySelector('.input-result-novos-valores');
+        let inputElement = document.querySelector('.input-result-novos-valores');
 
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('adicionarPergunta').addEventListener('click', function() {
                 adicionarPergunta();
             });
-    
+
             document.addEventListener('click', function(event) {
                 if (event.target.classList.contains('adicionarResposta')) {
                     adicionarResposta(event.target.closest('.pergunta'));
                 }
+
+                if (event.target.classList.contains('adicionarRespostaExistente')) {
+                    adicionarRespostaExistente(event.target.closest('.pergunta'));
+                }
+
+                if (event.target.classList.contains('removerPergunta')) {
+                    removerPergunta(event.target.closest('.pergunta'));
+                }
+
+                if (event.target.classList.contains('removerResposta')) {
+                    removerResposta(event.target.closest('.resposta'));
+                }
             });
         });
-    
-        function adicionarPergunta() {
 
-            var divPergunta = document.createElement('div');
+        function adicionarPergunta() {
+            let divPergunta = document.createElement('div');
             divPergunta.classList.add('pergunta');
             divPergunta.classList.add('question');
             divPergunta.classList.add('pergunta-novo');
             divPergunta.innerHTML = `
-                <div class="pb-3"> Nova Pergunta </div>
+                <div class="d-flex justify-content-between align-items-center pb-3">
+                    <div> Nova Pergunta </div>
+                    <button type="button" class="removerPergunta btn p-0"> 
+                        <i class="fa-solid fa-trash removerPergunta"></i>
+                    </button>
+                </div>
                 <input type="text" class="pergunta-input-novo form-control" placeholder="Digite a pergunta">
                 <div class="respostas  pt-4 pb-2">
                     <!-- As respostas serão adicionadas dinamicamente aqui -->
@@ -99,39 +130,65 @@
             `;
 
             document.getElementById('perguntas-container').appendChild(divPergunta);
-            
-            index++
         }
-    
+
         function adicionarResposta(perguntaElemento) {
-            var divResposta = document.createElement('div');
+            let divResposta = document.createElement('div');
+            divResposta.classList.add('resposta');
             divResposta.innerHTML = `
                 <div class="answer">
-                    <input type="text" class="resposta-input-novo form-control form-control--ghost form-control--ghost-low" placeholder="Resposta">
-                    <input type="number" class="pontuacao-input-novo form-control form-control--ghost form-control--ghost-low form-control--score"  placeholder="Pontuação">
+                    <div class="w-100"> <input type="text" class="resposta-input-novo form-control form-control--ghost form-control--ghost-low" placeholder="Resposta"> </div>
+                    <div class="w-100"> <input type="number" class="pontuacao-input-novo form-control form-control--ghost form-control--ghost-low form-control--score"  placeholder="Pontuação"> </div>
+                    <button type="button" class="removerResposta btn ">X</button>
                 </div>
+               
             `;
             perguntaElemento.querySelector('.respostas').appendChild(divResposta);
         }
 
-        document.getElementById('customSubmitButton').addEventListener('click', function() {
-            enviarDadosParaLaravel();
+        function adicionarRespostaExistente(perguntaElemento) {
+            let respostas = []
+            let perguntaId = event.target.dataset.id;
 
+            let divResposta = document.createElement('div');
+            divResposta.classList.add('resposta');
+            divResposta.innerHTML = `
+                <div class="answer">
+                    <input type="text" data-id="${perguntaId}" class="resposta-input-novo-existente form-control form-control--ghost form-control--ghost-low" placeholder="Resposta">
+                    <input type="number" data-id="${perguntaId}" class="pontuacao-input-novo-existente form-control form-control--ghost form-control--ghost-low form-control--score"  placeholder="Pontuação">
+                    <button type="button" class="removerResposta btn ">X</button>
+                </div>
+               
+            `;
+            perguntaElemento.querySelector('.respostas').appendChild(divResposta);
+        }
+
+        function removerPergunta(perguntaElemento) {
+            perguntaElemento.remove();
+        }
+
+        function removerResposta(respostaElemento) {
+            respostaElemento.remove();
+        }
+
+        document.getElementById('customSubmitButton').addEventListener('click', function() {
+            submitDados();
+            submitDadosPerguntasNovas();
             document.getElementById('formUpdateTeste').submit();
         });
-    
-        function enviarDadosParaLaravel() {
-            var perguntas = [];
+
+        function submitDados() {
+            let perguntas = [];
     
             document.querySelectorAll('.pergunta-novo').forEach(function(perguntaElemento) {
-                var pergunta = {
+                let pergunta = {
                     pergunta: perguntaElemento.querySelector('.pergunta-input-novo').value,
                     respostas: []
                 };
     
                 perguntaElemento.querySelectorAll('.resposta-input-novo').forEach(function(respostaElemento, index) {
-                    var pontuacaoElemento = perguntaElemento.querySelectorAll('.pontuacao-input-novo')[index];
-                    var resposta = {
+                    let pontuacaoElemento = perguntaElemento.querySelectorAll('.pontuacao-input-novo')[index];
+                    let resposta = {
                         resposta: respostaElemento.value,
                         pontuacao: pontuacaoElemento.value
                     };
@@ -141,9 +198,68 @@
                 perguntas.push(pergunta);
                 
             });
+
             document.getElementById('perguntasInput').value = JSON.stringify(perguntas)
             
         }
+
+        function submitDadosPerguntasNovas() {
+            let respostaElemento = document.querySelectorAll('.resposta-input-novo-existente')
+
+            let respostas = [];
+
+            respostaElemento.forEach(function(respostaElemento, index) {
+
+                let pontuacaoElemento = document.querySelectorAll('.pontuacao-input-novo-existente')[index];
+                let resposta = {
+                    idPergunta: respostaElemento.dataset.id,
+                    resposta: respostaElemento.value,
+                    pontuacao: pontuacaoElemento.value
+                };
+                respostas.push(resposta);
+            });
+
+            document.getElementById('respostasInput').value = JSON.stringify(respostas)
+
+        }
+
+        $('.btn-deletar').on('click', function () {
+            let id = $(this).data('id');
+
+            $.ajax({
+                url: '/dashboard/resposta/' + id,
+                type: 'DELETE',
+                data: {
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function (response) {
+                    console.log(response)
+                    $("#"+response['resposta']).slideUp("slow");
+                },
+                error: function (error) {
+                    console.error('Erro ao deletar o registro:', error);
+                }
+            });
+        });
+
+        $('.btn-deletar-pergunta').on('click', function () {
+            let id = $(this).data('id');
+
+            $.ajax({
+                url: '/dashboard/pergunta/' + id,
+                type: 'DELETE',
+                data: {
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function (response) {
+                    console.log(response)
+                    $("#"+response['pergunta']).slideUp("slow");
+                },
+                error: function (error) {
+                    console.error('Erro ao deletar o registro:', error);
+                }
+            });
+        });
         
     </script>
 @endsection

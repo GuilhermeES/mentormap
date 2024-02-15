@@ -16,7 +16,7 @@
                         <a href="{{ route('dashboard.gerenciar-resultados')}}"> Voltar </a>
                     </div>
                     <div class="titulo-descricao question">
-                    <form action="#" method="POST">
+                    <form action="{{ route('dashboard.update-resultado', ['id' => $result->id]) }}" method="POST">
                         @csrf
                         <div class="teste-create__form">
                             <label for="title"> TÍTULO * </label>
